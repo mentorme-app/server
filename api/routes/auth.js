@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
             res.status(401).json({ message: 'Invalid Credentials' });
         }
     } catch (err) {
-        res.send(500).json({ error: err });
+        res.status(500).json({ error: err });
     }
 });
 
@@ -75,7 +75,7 @@ router.post('/register', async (req, res) => {
             });
         }
     } catch (err) {
-        res.send(500).json({ error: err });
+        res.status(500).json({ error: err });
     }
 });
 
