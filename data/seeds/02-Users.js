@@ -16,4 +16,4 @@ for (let i = 0; i < 5; i++) {
     users.push(user);
 }
 console.log(users);
-exports.seed = knex => knex.insert(users);
+exports.seed = knex => knex('users').insert(users);
