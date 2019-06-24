@@ -3,24 +3,29 @@ const router = require('express').Router();
 const validate = require('../../middleware/validate');
 const generateToken = require('../../lib/generateToken');
 
-// add validation object
+/**
+ * @todo - add validation object to middlewares
+ * @todo - implement data models
+ *
+ */
 router.post('/login', validate(), async (req, res) => {
     const { username, password } = req.body;
     // fetch user from DB
     const user = username; // TBD
 
     if (user && bcrypt.compareSync(password, user.password)) {
-        const token = generateToken(user);
-
         delete user.password;
 
-        res.status(200).json(
-            'User is logged in'
-            //     {
-            //     user,
-            //     token
-            // }
-        );
+        /**
+         * generateToken takes in
+         * { id, username, role }
+         */
+        const token = generateToken(user);
+
+        res.status(200).json({
+            user,
+            token
+        });
     } else {
         res.status(401).json({ message: 'Invalid Credentials' });
     }
