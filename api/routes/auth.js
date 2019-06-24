@@ -50,3 +50,5 @@ router.post('/register', validate(), async (req, res) => {
 
     res.status(201).json('Created new user');
 });
+
+module.exports = router;
