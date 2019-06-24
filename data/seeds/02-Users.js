@@ -1,11 +1,9 @@
 const faker = require('faker');
-const uuid = require('uuid');
 const bcrypt = require('bcryptjs');
 
 const users = [];
 for (let i = 0; i < 5; i++) {
     const user = {
-        user_id: uuid(),
         username: faker.internet.userName(),
         password: bcrypt.hashSync('1234567', 10),
         email: faker.internet.email(),
