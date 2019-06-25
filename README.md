@@ -49,7 +49,7 @@ Example:
     "avatar": null,
     "motto": null,
     "description": null,
-    "tag_id": null,
+    "tag": "Sales",
     "created_at": "2019-06-24T14:36:20.727Z",
     "updated_at": "2019-06-24T14:36:20.727Z"
     },
@@ -83,7 +83,7 @@ Example:
     "avatar": null,
     "motto": null,
     "description": null,
-    "tag_id": null,
+    "tag": "Sales",
     "created_at": "2019-06-24T14:36:20.727Z",
     "updated_at": "2019-06-24T14:36:20.727Z"
     },
@@ -112,7 +112,7 @@ Example:
     "avatar": null,
     "motto": null,
     "description": null,
-    "tag_id": null,
+    "tag": "Sales",
     "created_at": "2019-06-24T14:36:20.727Z",
     "updated_at": "2019-06-24T14:36:20.727Z"
     }
@@ -147,7 +147,7 @@ Example:
     "avatar": null,
     "motto": null,
     "description": null,
-    "tag_id": null,
+    "tag": "Sales",
     "created_at": "2019-06-24T14:36:20.727Z",
     "updated_at": "2019-06-24T14:36:20.727Z"
     }
