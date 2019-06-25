@@ -247,7 +247,6 @@ Example:
         description: 'Deserunt ut mpore minus voluptatibus ipsam. Excepturi .'
     }
 }
-
 ```
 
 ## [POST] New question
@@ -308,5 +307,133 @@ Example:
 ```js
 {
     "message": "Resource with ID 6 was deleted"
+}
+```
+
+# Conversations
+
+## [GET] All conversations for a question
+
+**URL:** `/api/conversation?qid=1`
+
+**Query string:** `qid` query string with question_id
+
+**Returns:** an array of objects with conversations for specific question.
+
+Example:
+
+```js
+[
+  {
+    id: 1,
+    question_id: 1,
+    mentor_id: 3,
+    created_at: '2019-06-25 11:49:12',
+    updated_at: '2019-06-25 11:49:12'
+  },
+  {
+    id: 2,
+    question_id: 1,
+    mentor_id: 4,
+    created_at: '2019-06-25 11:49:12',
+    updated_at: '2019-06-25 11:49:12'
+  }
+];
+```
+
+## [GET] Conversation by ID
+
+**URL:** `/api/conversations/:id`
+
+**Params:** Valid conversation ID.
+
+**Returns:** an object conversation data and list of messages.
+
+Example:
+
+```js
+{
+    "id": 6,
+    "question_id": 6,
+    "mentor_id": 1,
+    "created_at": "2019-06-25 15:24:37",
+    "updated_at": "2019-06-25 15:24:37",
+    "messages": [
+        {
+            "id": 16,
+            "sender": 1,
+            "text": "Hey, I can help you!",
+            "conversation_id": 6,
+            "created_at": "2019-06-25 15:27:44",
+            "updated_at": "2019-06-25 15:27:44"
+        },
+        {
+            "id": 18,
+            "sender": 1,
+            "text": "Do you have experience with this?",
+            "conversation_id": 6,
+            "created_at": "2019-06-25 15:33:55",
+            "updated_at": "2019-06-25 15:33:55"
+        }
+    ]
+}
+```
+
+## [POST] New conversation
+
+**URL:** `/api/conversation?qid=1`
+
+**Query string:** `qid` query string with question_id
+
+**Payload:** an object with the following properties.
+
+```js
+{
+	"mentor_id": 2
+}
+```
+
+**Returns:** new conversation data.
+
+Example:
+
+```js
+{
+    "id": 8,
+    "question_id": 6,
+    "mentor_id": 2,
+    "created_at": "2019-06-25 16:02:24",
+    "updated_at": "2019-06-25 16:02:24"
+}
+```
+
+# Messages
+
+## [POST] New message
+
+**URL:** `/api/messages`
+
+**Payload:** an object with the following properties.
+
+```js
+{
+	"sender": 1,
+	"text": "I did not!",
+	"conversation_id": 6
+}
+```
+
+**Returns:** new conversation data.
+
+Example:
+
+```js
+{
+    "id": 20,
+    "sender": 1,
+    "text": "I did not!",
+    "conversation_id": 6,
+    "created_at": "2019-06-25 16:06:41",
+    "updated_at": "2019-06-25 16:06:41"
 }
 ```
