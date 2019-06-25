@@ -153,3 +153,30 @@ Example:
     }
 }
 ```
+
+# Tags
+
+## [GET] All tags
+
+**URL:** `/api/tags`
+
+**Returns:** an array of objects with tags.
+
+Example:
+
+```js
+[
+  {
+    id: 1,
+    tag: 'Photography',
+    created_at: '2019-06-25 07:32:52',
+    updated_at: '2019-06-25 07:32:52'
+  },
+  {
+    id: 2,
+    tag: 'Marketing',
+    created_at: '2019-06-25 07:32:52',
+    updated_at: '2019-06-25 07:32:52'
+  }
+];
+```
