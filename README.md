@@ -17,3 +17,104 @@ MentorMe lets you lend your business skills to an entrepreneurs across the globe
 ## Design Links / Data Sets
 
 https://xd.adobe.com/spec/d5d00464-bbfc-4d37-403a-fec60f25c36a-a3e1/
+
+# API documentation
+
+# Authentication
+
+## [POST] registration
+
+**URL:** `/api/auth/register`
+
+**Payload:** an object with the following properties.
+
+```js
+{
+  "email": "joe@test.com",
+  "username": "Joe",
+  "password": "1234567"
+}
+```
+
+**Returns:** an object with user data and authentication token.
+
+Example:
+
+```js
+{
+  "user": {
+    "id": 1,
+    "username": "Joe",
+    "email": "joe@test.com",
+    "avatar": null,
+    "motto": null,
+    "description": null,
+    "tag_id": null,
+    "created_at": "2019-06-24T14:36:20.727Z",
+    "updated_at": "2019-06-24T14:36:20.727Z"
+    },
+  "token": "<hidden>"
+}
+```
+
+## [POST] login
+
+**URL:** `/api/auth/login`
+
+**Payload:** an object with the following properties.
+
+```js
+{
+  "email": "joe@test.com",
+  "password": "1234567"
+}
+```
+
+**Returns:** an object with user data and authentication token.
+
+Example:
+
+```js
+{
+  "user": {
+    "id": 1,
+    "username": "Joe",
+    "email": "joe@test.com",
+    "avatar": null,
+    "motto": null,
+    "description": null,
+    "tag_id": null,
+    "created_at": "2019-06-24T14:36:20.727Z",
+    "updated_at": "2019-06-24T14:36:20.727Z"
+    },
+  "token": "<hidden>"
+}
+```
+
+# Users
+
+## [GET] User by ID
+
+**URL:** `/api/user/:id`
+
+**Params:** Valid user ID.
+
+**Returns:** an object with user data and authentication token.
+
+Example:
+
+```js
+{
+  "user": {
+    "id": 1,
+    "username": "Joe",
+    "email": "joe@test.com",
+    "avatar": null,
+    "motto": null,
+    "description": null,
+    "tag_id": null,
+    "created_at": "2019-06-24T14:36:20.727Z",
+    "updated_at": "2019-06-24T14:36:20.727Z"
+    }
+}
+```
