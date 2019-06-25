@@ -13,8 +13,6 @@ router.get('/:id', async (req, res) => {
                 .json({ message: 'User with this ID does not exist' });
         }
 
-        delete user.password;
-
         res.status(200).json(user);
     } catch (err) {
         res.status(500).json({ error: err });
@@ -42,7 +40,6 @@ router.put('/:id', async (req, res) => {
         await User.update(id, toUpdate);
 
         const [updatedUser] = await User.getById(id);
-        delete updatedUser.password;
 
         res.status(200).json(updatedUser);
     } catch (err) {
