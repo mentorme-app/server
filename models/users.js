@@ -5,7 +5,16 @@ module.exports = {
     filter: query =>
         db('users')
             .where(query)
-            .returning('id'),
+            .join('tags', 'users.tag_id', 'tags.id')
+            .select(
+                'users.username',
+                'users.email',
+                'users.password',
+                'users.avatar',
+                'users.motto',
+                'users.description',
+                'tags.tag'
+            ),
     getById: id =>
         db('users')
             .join('tags', 'users.tag_id', 'tags.id')
