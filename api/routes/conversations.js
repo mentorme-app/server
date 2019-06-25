@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const Conv = require('../../models/conversations');
-const Question = require('../../models/questions');
-const User = require('../../models/users');
+const Msg = require('../../models/messages');
 
 router.get('/', async (req, res) => {
     // .../api/conversations?qid=1
@@ -32,6 +31,9 @@ router.get('/:id', async (req, res) => {
     try {
         const [conv] = await Conv.getById(id);
         if (conv) {
+            const messages = await Msg.getMsgForConv(id);
+            conv.messages = messages;
+
             res.status(200).json(conv);
         } else {
             res.status(404).json({
