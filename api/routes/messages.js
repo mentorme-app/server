@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
             conversation_id
         });
 
-        const newMsg = await Msg.getById(msgId);
+        const [newMsg] = await Msg.getById(msgId);
 
         res.status(201).json(newMsg);
     } catch (err) {

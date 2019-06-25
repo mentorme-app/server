@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
             });
 
             if (newConvId) {
-                const newConv = await Conv.getById(newConvId);
+                const [newConv] = await Conv.getById(newConvId);
                 res.status(201).json(newConv);
             } else {
                 return res.status(404).json({
