@@ -11,8 +11,8 @@ module.exports = {
         db('users')
             .insert(user)
             .returning('id'),
-    update: (user_id, changes) =>
+    update: (id, changes) =>
         db('users')
-            .where({ user_id })
+            .where({ id })
             .update(changes)
 };
