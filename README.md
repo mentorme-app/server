@@ -99,7 +99,7 @@ Example:
 
 **Params:** Valid user ID.
 
-**Returns:** an object with user data and authentication token.
+**Returns:** an object with user data.
 
 Example:
 
@@ -109,6 +109,41 @@ Example:
     "id": 1,
     "username": "Joe",
     "email": "joe@test.com",
+    "avatar": null,
+    "motto": null,
+    "description": null,
+    "tag_id": null,
+    "created_at": "2019-06-24T14:36:20.727Z",
+    "updated_at": "2019-06-24T14:36:20.727Z"
+    }
+}
+```
+
+## [PUT] User
+
+**URL:** `/api/user/:id`
+
+**Params:** Valid user ID.
+
+**Payload:** an object containing the property/properties you want to update.
+
+```js
+{
+  "email": "joeCoolDude@test.com",
+  "password": "abcdefgh"
+}
+```
+
+**Returns:** an object with user data.
+
+Example:
+
+```js
+{
+  "user": {
+    "id": 1,
+    "username": "Joe",
+    "email": "joeCoolDude@test.com",
     "avatar": null,
     "motto": null,
     "description": null,
