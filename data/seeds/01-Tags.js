@@ -1,4 +1,5 @@
 const tags = [
+    { tag: '' },
     { tag: 'Photography' },
     { tag: 'Marketing' },
     { tag: 'Product Management' },
