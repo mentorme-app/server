@@ -180,3 +180,133 @@ Example:
   }
 ];
 ```
+
+# Questions
+
+## [GET] All questions
+
+**URL:** `/api/questions`
+
+**Returns:** an array of objects with questions.
+
+Example:
+
+```js
+[
+  {
+    id: 1,
+    title: 'Dolores ut aut reiciendis quasi.',
+    question: 'Quas debitis lau ',
+    isAnswered: 0,
+    created_at: '2019-06-25 11:49:12',
+    updated_at: '2019-06-25 11:49:12',
+    tag: {
+      tag: '',
+      id: 1
+    },
+    author: {
+      id: 1,
+      username: 'Danika_Rolfson35',
+      email: 'Claudia36@gmail.com',
+      avatar: null,
+      motto: 'Tempore est corrupti nemo beatae omnis aut consequatur.',
+      description: 'Deserunt ut mpore minus voluptatibus ipsam. Excepturi .'
+    }
+  }
+];
+```
+
+## [GET] Question by ID
+
+**URL:** `/api/questions/:id`
+
+**Params:** Valid question ID.
+
+**Returns:** an object with question.
+
+Example:
+
+```js
+{
+    id: 1,
+    title: 'Dolores ut aut reiciendis quasi.',
+    question: 'Quas debitis lau ',
+    isAnswered: 0,
+    created_at: '2019-06-25 11:49:12',
+    updated_at: '2019-06-25 11:49:12',
+    tag: {
+        tag: '',
+        id: 1
+    },
+    author: {
+        id: 1,
+        username: 'Danika_Rolfson35',
+        email: 'Claudia36@gmail.com',
+        avatar: null,
+        motto: 'Tempore est corrupti nemo beatae omnis aut consequatur.',
+        description: 'Deserunt ut mpore minus voluptatibus ipsam. Excepturi .'
+    }
+}
+
+```
+
+## [POST] New question
+
+**URL:** `/api/questions`
+
+**Payload:** an object with the following properties.
+
+```js
+{
+	"title": "How do I sell my product?",
+	"question": "I have this great product",
+	"author_id": 6,
+	"tag_id": 3
+}
+```
+
+**Returns:** an object with question data.
+
+Example:
+
+```js
+{
+    "id": 8,
+    "title": "How do I sell my product?",
+    "question": "I have this great product",
+    "isAnswered": 0,
+    "created_at": "2019-06-25 13:33:13",
+    "updated_at": "2019-06-25 13:33:13",
+    "author": {
+        "id": 6,
+        "username": "Bob",
+        "email": "bob@test.com",
+        "avatar": null,
+        "motto": null,
+        "description": null,
+        "tag": ""
+    },
+    "tag": {
+        "id": 3,
+        "tag": "Marketing",
+        "created_at": "2019-06-25 11:49:12",
+        "updated_at": "2019-06-25 11:49:12"
+    }
+}
+```
+
+## [DELETE] Question by ID
+
+**URL:** `/api/questions/:id`
+
+**Params:** Valid question ID.
+
+**Returns:** a confirmation message
+
+Example:
+
+```js
+{
+    "message": "Resource with ID 6 was deleted"
+}
+```
