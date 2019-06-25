@@ -99,4 +99,27 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [resource] = await Question.getById(id);
+
+        if (!resource) {
+            return res
+                .status(404)
+                .json({ message: 'A question with this ID does not exist' });
+        }
+
+        const deletingResource = await Question.delResource(id);
+
+        res.status(200).json({
+            message: `Resource with ID ${id} was ${
+                deletingResource > 0 ? '' : 'not '
+            }deleted`
+        });
+    } catch (err) {
+        res.status(500).json({ error: err });
+    }
+});
+
 module.exports = router;

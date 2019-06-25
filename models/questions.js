@@ -10,5 +10,9 @@ module.exports = {
     addResource: resource =>
         db('questions')
             .insert(resource)
-            .returning('id')
+            .returning('id'),
+    delResource: id =>
+        db('questions')
+            .where({ id })
+            .del()
 };
