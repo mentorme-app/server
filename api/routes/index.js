@@ -4,6 +4,7 @@ const userRouter = require('./user');
 const tagsRouter = require('./tags');
 const questionsRouter = require('./questions');
 const conversationsRouter = require('./conversations');
+const messagesRouter = require('./messages');
 
 module.exports = server => {
     server.use(p.auth, authRouter);
@@ -11,6 +12,7 @@ module.exports = server => {
     server.use(p.tags, tagsRouter);
     server.use(p.questions, questionsRouter);
     server.use(p.conversations, conversationsRouter);
+    server.use(p.messages, messagesRouter);
 
     server.get('/', (req, res) => {
         res.status(200).json('MentorMe API is live!');
