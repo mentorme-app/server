@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const User = require('../../models/users');
 
 const dummyData = {
     id: '123456',
@@ -15,8 +16,23 @@ const dummyData = {
     questionsAnswered: 74
 };
 
-router.get('/', (req, res) => {
-    res.status(200).json(dummyData);
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [user] = await User.getById(id);
+
+        if (!user) {
+            return res
+                .status(404)
+                .json({ message: 'User with this ID does not exist' });
+        }
+
+        delete user.password;
+
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(500).json({ error: err });
+    }
 });
 
 module.exports = router;
