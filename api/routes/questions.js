@@ -60,4 +60,43 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    const { title, question, author_id, tag_id } = req.body;
+    try {
+        const [user] = await User.getById(author_id);
+        const [tag] = await Tags.getById(tag_id);
+
+        if (!user) {
+            return res.status(404).json({
+                message: 'User with this ID does not exist'
+            });
+        }
+
+        if (!tag) {
+            return res.status(404).json({
+                message: 'Tag with this ID does not exist'
+            });
+        }
+
+        const [addQuestion] = await Question.addResource({
+            title,
+            question,
+            author_id,
+            tag_id
+        });
+
+        if (addQuestion) {
+            const [addedQuestion] = await Question.getById(addQuestion);
+            delete addedQuestion.author_id;
+            delete addedQuestion.tag_id;
+            addedQuestion.author = user;
+            addedQuestion.tag = tag;
+
+            res.status(201).json(addedQuestion);
+        }
+    } catch (err) {
+        res.status(500).json({ error: err });
+    }
+});
+
 module.exports = router;

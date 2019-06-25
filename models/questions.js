@@ -6,5 +6,9 @@ module.exports = {
             .join('tags', 'questions.tag_id', 'tags.id')
             .join('users', 'questions.author_id', 'users.id'),
     filter: query => db('questions').where(query),
-    getById: id => db('questions').where({ id })
+    getById: id => db('questions').where({ id }),
+    addResource: resource =>
+        db('questions')
+            .insert(resource)
+            .returning('id')
 };
