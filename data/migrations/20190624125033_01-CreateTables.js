@@ -16,7 +16,10 @@ exports.up = knex =>
             table.string('avatar');
             table.string('motto');
             table.text('description');
-            table.integer('tag_id').unsigned();
+            table
+                .integer('tag_id')
+                .unsigned()
+                .defaultTo(1);
             table
                 .foreign('tag_id')
                 .references('id')
