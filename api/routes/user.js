@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const router = require('express').Router();
 const User = require('../../models/users');
 
@@ -32,6 +33,10 @@ router.put('/:id', async (req, res) => {
             return res
                 .status(404)
                 .json({ message: 'User with this ID does not exist' });
+        }
+
+        if (toUpdate.password) {
+            toUpdate.password = bcrypt.hashSync(toUpdate.password, 10);
         }
         // returns number of edited records in DB
         await User.update(id, toUpdate);
