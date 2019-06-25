@@ -7,6 +7,7 @@ module.exports = {
             .where(query)
             .join('tags', 'users.tag_id', 'tags.id')
             .select(
+                'users.id',
                 'users.username',
                 'users.email',
                 'users.password',
@@ -19,6 +20,7 @@ module.exports = {
         db('users')
             .join('tags', 'users.tag_id', 'tags.id')
             .select(
+                'users.id',
                 'users.username',
                 'users.email',
                 'users.avatar',
