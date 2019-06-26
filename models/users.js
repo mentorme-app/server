@@ -84,7 +84,7 @@ module.exports = {
             avatar: Joi.string().max(255),
             motto: Joi.string().max(255),
             description: Joi.string(),
-            tag_id: [Joi.string(), Joi.number()]
+            tag_id: Joi.number()
         });
 
         return Joi.validate(user, schema);

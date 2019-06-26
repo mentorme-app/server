@@ -22,8 +22,8 @@ module.exports = {
                 .required()
                 .max(255),
             question: Joi.string().required(),
-            author_id: [Joi.string().required(), Joi.number().required()],
-            tag_id: [Joi.string().required(), Joi.number().required()],
+            author_id: Joi.number().required(),
+            tag_id: Joi.number().required(),
             isAnswered: Joi.boolean()
         });
 
