@@ -125,7 +125,7 @@ Example:
 
 **Params:** Valid user ID.
 
-**Payload:** an object containing the property/properties you want to update.
+**Payload:** an object containing the User property/properties you want to update.
 
 ```js
 {
@@ -381,15 +381,14 @@ Example:
 
 ## [POST] New conversation
 
-**URL:** `/api/conversation?qid=1`
-
-**Query string:** `qid` query string with question_id
+**URL:** `/api/conversation`
 
 **Payload:** an object with the following properties.
 
 ```js
 {
-	"mentor_id": 2
+    "mentor_id": 2,
+    "question_id": 6
 }
 ```
 
