@@ -46,6 +46,7 @@ Example:
     "id": 1,
     "username": "Joe",
     "email": "joe@test.com",
+    "phone_number": null,
     "avatar": null,
     "motto": null,
     "description": null,
@@ -80,6 +81,7 @@ Example:
     "id": 1,
     "username": "Joe",
     "email": "joe@test.com",
+    "phone_number": null,
     "avatar": null,
     "motto": null,
     "description": null,
@@ -109,6 +111,7 @@ Example:
     "id": 1,
     "username": "Joe",
     "email": "joe@test.com",
+    "phone_number": null,
     "avatar": null,
     "motto": null,
     "description": null,
@@ -144,6 +147,7 @@ Example:
     "id": 1,
     "username": "Joe",
     "email": "joeCoolDude@test.com",
+    "phone_number": null,
     "avatar": null,
     "motto": null,
     "description": null,
@@ -208,6 +212,7 @@ Example:
       id: 1,
       username: 'Danika_Rolfson35',
       email: 'Claudia36@gmail.com',
+      phone_number: '(951) 324-8429 x1770',
       avatar: null,
       motto: 'Tempore est corrupti nemo beatae omnis aut consequatur.',
       description: 'Deserunt ut mpore minus voluptatibus ipsam. Excepturi .'
@@ -242,6 +247,7 @@ Example:
         id: 1,
         username: 'Danika_Rolfson35',
         email: 'Claudia36@gmail.com',
+        phone_number: "(951) 324-8429 x1770",
         avatar: null,
         motto: 'Tempore est corrupti nemo beatae omnis aut consequatur.',
         description: 'Deserunt ut mpore minus voluptatibus ipsam. Excepturi .'
@@ -280,6 +286,7 @@ Example:
         "id": 6,
         "username": "Bob",
         "email": "bob@test.com",
+        "phone_number": "(951) 324-8429 x1770",
         "avatar": null,
         "motto": null,
         "description": null,
@@ -393,6 +400,8 @@ Example:
 ```
 
 **Returns:** new conversation data.
+
+**Twilio:** When a new conversation is started for a question and if the author of the question provided his phone number, he will be notified about it via SMS.
 
 Example:
 
