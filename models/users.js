@@ -13,7 +13,6 @@ module.exports = {
                 'users.email',
                 'users.phone_number',
                 'users.password',
-                'users.phone_number',
                 'users.avatar',
                 'users.motto',
                 'users.description',
