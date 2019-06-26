@@ -1,3 +1,4 @@
+const Joi = require('@hapi/joi');
 const db = require('../data/db');
 
 module.exports = {
@@ -36,5 +37,56 @@ module.exports = {
     update: (id, changes) =>
         db('users')
             .where({ id })
-            .update(changes)
+            .update(changes),
+    loginSchema: user => {
+        const schema = Joi.object().keys({
+            email: Joi.string()
+                .email()
+                .max(255)
+                .required(),
+            password: Joi.string()
+                .required()
+                .min(5)
+                .max(255)
+        });
+
+        return Joi.validate(user, schema);
+    },
+    registerSchema: user => {
+        const schema = Joi.object().keys({
+            email: Joi.string()
+                .email()
+                .max(255)
+                .required(),
+            password: Joi.string()
+                .required()
+                .min(5)
+                .max(255),
+            username: Joi.string()
+                .min(3)
+                .max(255)
+                .required()
+        });
+
+        return Joi.validate(user, schema);
+    },
+    putSchema: user => {
+        const schema = Joi.object().keys({
+            email: Joi.string()
+                .email()
+                .max(255),
+            password: Joi.string()
+                .min(5)
+                .max(255),
+            username: Joi.string()
+                .min(3)
+                .max(255),
+            avatar: Joi.string().max(255),
+            motto: Joi.string().max(255),
+            description: Joi.string(),
+            tag_id: [Joi.string(), Joi.number()]
+        });
+
+        return Joi.validate(user, schema);
+    }
 };
