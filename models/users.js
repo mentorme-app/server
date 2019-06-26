@@ -12,6 +12,7 @@ module.exports = {
                 'users.username',
                 'users.email',
                 'users.password',
+                'users.phone_number',
                 'users.avatar',
                 'users.motto',
                 'users.description',
@@ -24,6 +25,7 @@ module.exports = {
                 'users.id',
                 'users.username',
                 'users.email',
+                'users.phone_number',
                 'users.avatar',
                 'users.motto',
                 'users.description',
@@ -81,6 +83,7 @@ module.exports = {
             username: Joi.string()
                 .min(3)
                 .max(255),
+            phone_number: Joi.string(),
             avatar: Joi.string().max(255),
             motto: Joi.string().max(255),
             description: Joi.string(),
