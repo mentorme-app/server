@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const validate = require('../../middleware/validate');
+const Questions = require('../../models/questions');
+const Users = require('../../models/users');
 const Conv = require('../../models/conversations');
 const Msg = require('../../models/messages');
 
@@ -45,7 +47,7 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ error: err });
     }
 });
-
+const client = require('../../lib/twilio');
 router.post('/', validate(Conv.postSchema), async (req, res) => {
     const { mentor_id, question_id } = req.body;
 
@@ -56,7 +58,22 @@ router.post('/', validate(Conv.postSchema), async (req, res) => {
         });
 
         if (newConvId) {
+            const [question] = await Questions.getById(question_id);
+            const [user] = await Users.getById(question.author_id);
+            const [mentor] = await Users.getById(mentor_id);
             const [newConv] = await Conv.getById(newConvId);
+
+            if (user.phone_number) {
+                client.messages
+                    .create({
+                        body: `Hi ${user.username}! ${
+                            mentor.username
+                        } answered your question. You can find it here: ... `,
+                        from: process.env.TWILIO_PHONE_NUMBER,
+                        to: user.phone_number
+                    })
+                    .then(message => console.log(message.sid));
+            }
             res.status(201).json(newConv);
         } else {
             return res.status(404).json({
