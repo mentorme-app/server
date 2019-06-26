@@ -11,6 +11,7 @@ module.exports = {
                 'users.id',
                 'users.username',
                 'users.email',
+                'users.phone_number',
                 'users.password',
                 'users.phone_number',
                 'users.avatar',
