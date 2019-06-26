@@ -1,3 +1,4 @@
+const Joi = require('@hapi/joi');
 const db = require('../data/db');
 
 module.exports = {
@@ -14,5 +15,18 @@ module.exports = {
     delResource: id =>
         db('questions')
             .where({ id })
-            .del()
+            .del(),
+    postSchema: question => {
+        const schema = Joi.object().keys({
+            title: Joi.string()
+                .required()
+                .max(255),
+            question: Joi.string().required(),
+            author_id: Joi.number().required(),
+            tag_id: Joi.number().required(),
+            isAnswered: Joi.boolean()
+        });
+
+        return Joi.validate(question, schema);
+    }
 };

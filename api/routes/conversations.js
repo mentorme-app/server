@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const validate = require('../../middleware/validate');
 const Conv = require('../../models/conversations');
 const Msg = require('../../models/messages');
 
@@ -45,33 +46,25 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
-    // .../api/conversations?qid=1
-    // ID of question this conversation belongs to
-    const { qid } = req.query;
-    const { mentor_id } = req.body;
-    if (qid) {
-        try {
-            const [newConvId] = await Conv.addResource({
-                mentor_id,
-                question_id: qid
-            });
+router.post('/', validate(Conv.postSchema), async (req, res) => {
+    const { mentor_id, question_id } = req.body;
 
-            if (newConvId) {
-                const [newConv] = await Conv.getById(newConvId);
-                res.status(201).json(newConv);
-            } else {
-                return res.status(404).json({
-                    message: 'A question or user with this ID does not exist'
-                });
-            }
-        } catch (err) {
-            res.status(500).json({ error: err });
-        }
-    } else {
-        res.status(422).json({
-            message: 'Missing query string with question id'
+    try {
+        const [newConvId] = await Conv.addResource({
+            mentor_id,
+            question_id
         });
+
+        if (newConvId) {
+            const [newConv] = await Conv.getById(newConvId);
+            res.status(201).json(newConv);
+        } else {
+            return res.status(404).json({
+                message: 'A question or user with this ID does not exist'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err });
     }
 });
 

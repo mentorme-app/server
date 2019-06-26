@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const validate = require('../../middleware/validate');
 const Msg = require('../../models/messages');
 
-router.post('/', async (req, res) => {
+router.post('/', validate(Msg.postSchema), async (req, res) => {
     const { sender, text, conversation_id } = req.body;
 
     try {
