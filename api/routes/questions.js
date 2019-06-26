@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const validate = require('../../middleware/validate');
 const Question = require('../../models/questions');
 const Tags = require('../../models/tags');
 const User = require('../../models/users');
@@ -60,7 +61,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', validate(Question.postSchema), async (req, res) => {
     const { title, question, author_id, tag_id } = req.body;
     try {
         const [user] = await User.getById(author_id);
