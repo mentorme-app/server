@@ -8,7 +8,7 @@ const User = require('../../models/users');
  * @todo - add validation middleware
  *
  */
-router.post('/login', async (req, res) => {
+router.post('/login', validate(User.loginSchema), async (req, res) => {
     const { email, password } = req.body;
     try {
         // fetch user from DB
@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
 });
 
 // add validation object
-router.post('/register', async (req, res) => {
+router.post('/register', validate(User.registerSchema), async (req, res) => {
     try {
         let { username, email, password } = req.body;
 
