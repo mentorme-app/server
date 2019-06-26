@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const validate = require('../../middleware/validate');
 const Conv = require('../../models/conversations');
 const Msg = require('../../models/messages');
 
@@ -45,7 +46,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', validate(Conv.postSchema), async (req, res) => {
     // .../api/conversations?qid=1
     // ID of question this conversation belongs to
     const { qid } = req.query;
