@@ -10,8 +10,8 @@ module.exports = {
             .returning('id'),
     postSchema: conv => {
         const schema = Joi.object().keys({
-            question_id: [Joi.string(), Joi.number()],
-            mentor_id: [Joi.string(), Joi.number()]
+            question_id: [Joi.string().required(), Joi.number()].required(),
+            mentor_id: [Joi.string().required(), Joi.number().required()]
         });
 
         return Joi.validate(conv, schema);
