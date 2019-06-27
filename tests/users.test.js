@@ -26,7 +26,7 @@ describe('Users endpoints', function() {
         it('Returns the user object if it exist', async function() {
             const res = await request(server).get(`${path.user}/${id}`);
             assert.property(res.body, 'id', 'Contains user id');
-            assert.strictEqual(res.body.id, 1, 'Responds with correct ID');
+            assert.strictEqual(res.body.id, id, 'Responds with correct ID');
             assert.property(res.body, 'username', 'Contains username');
             assert.strictEqual(
                 res.body.username,
@@ -91,7 +91,7 @@ describe('Users endpoints', function() {
                 .put(`${path.user}/${id}`)
                 .send(putUser);
             assert.property(res.body, 'id', 'Contains user id');
-            assert.strictEqual(res.body.id, 1, 'Responds with correct ID');
+            assert.strictEqual(res.body.id, id, 'Responds with correct ID');
             assert.property(res.body, 'username', 'Contains username');
             assert.strictEqual(
                 res.body.username,
