@@ -49,6 +49,22 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.get('/user/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const conv = await Conv.getConvByUserId(id);
+        if (conv.length > 0) {
+            res.status(200).json(conv);
+        } else {
+            res.status(404).json({
+                message: 'User with this ID does not have any conversations'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err });
+    }
+});
+
 router.post('/', validate(Conv.postSchema), async (req, res) => {
     const { mentor_id, question_id } = req.body;
 

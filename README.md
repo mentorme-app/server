@@ -383,6 +383,33 @@ Example:
 }
 ```
 
+## [GET] All conversations for a user
+
+**URL:** `/api/conversations/user/:id`
+
+**Params:** Valid user ID.
+
+**Returns:** an array with conversation objects.
+
+Example:
+
+```js
+[
+  {
+    id: 1,
+    question_id: 1,
+    mentor_id: 3,
+    author_id: 1
+  },
+  {
+    id: 7,
+    question_id: 6,
+    mentor_id: 1,
+    author_id: 2
+  }
+];
+```
+
 ## [POST] New conversation
 
 **URL:** `/api/conversation`
