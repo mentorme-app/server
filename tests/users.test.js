@@ -7,12 +7,12 @@ const path = require('../lib/routes');
 const { user, tag, putUser, id } = require('./testsSetup');
 
 describe('Users endpoints', function() {
-    beforeEach(async function() {
+    before(async function() {
         await db('tags').insert(tag);
         await db('users').insert(user);
     });
 
-    afterEach(async function() {
+    after(async function() {
         await db('users').truncate();
         await db('tags').truncate();
     });

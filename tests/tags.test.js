@@ -6,11 +6,11 @@ const path = require('../lib/routes');
 const { tag } = require('./testsSetup');
 
 describe('Tags endpoints', function() {
-    beforeEach(async function() {
+    before(async function() {
         await db('tags').insert(tag);
     });
 
-    afterEach(async function() {
+    after(async function() {
         await db('tags').truncate();
     });
 
