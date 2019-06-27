@@ -11,5 +11,9 @@ module.exports = {
     },
     tag: {
         tag: 'Testing'
+    },
+    putUser: {
+        username: 'Joey',
+        password: 'not_so_secret'
     }
 };
