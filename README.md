@@ -359,7 +359,28 @@ Example:
     "id": 6,
     "question_id": 6,
     "mentor_id": 1,
-    "author_id": 2,
+    "created_at": "2019-06-25 15:24:37",
+    "updated_at": "2019-06-25 15:24:37",
+    "author": {
+        "id": 3,
+        "username": "Delphia26",
+        "email": "Branson_Buckridge10@yahoo.com",
+        "phone_number": "(324) 778-4260",
+        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+        "motto": "Veniam in non optio maiores doloribus.",
+        "description": "Nihil ut libero voluptatem est quis",
+        "tag": ""
+    },
+    "mentor": {
+        "id": 1,
+        "username": "Jace_Frami",
+        "email": "Jettie85@yahoo.com",
+        "phone_number": "072-906-3922 x52579",
+        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+        "motto": "Fugiat adipisci qui libero qui amet et neque cupiditate sint.",
+        "description": "Quas quam asperiores.",
+        "tag": "Marketing"
+    },
     "messages": [
         {
             "id": 16,
@@ -371,7 +392,7 @@ Example:
         },
         {
             "id": 18,
-            "sender": 1,
+            "sender": 3,
             "text": "Do you have experience with this?",
             "conversation_id": 6,
             "created_at": "2019-06-25 15:33:55",

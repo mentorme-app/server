@@ -35,6 +35,13 @@ router.get('/:id', async (req, res) => {
     try {
         const [conv] = await Conv.getById(id);
         if (conv) {
+            const [mentor] = await Users.getById(conv.mentor_id);
+            conv.mentor = mentor;
+
+            const [question] = await Questions.getById(conv.question_id);
+            const [author] = await Users.getById(question.author_id);
+            conv.author = author;
+
             const messages = await Msg.getMsgForConv(id);
             conv.messages = messages;
 
@@ -102,6 +109,7 @@ router.post('/', validate(Conv.postSchema), async (req, res) => {
                         from: process.env.TWILIO_PHONE_NUMBER,
                         to: user.phone_number
                     })
+                    // eslint-disable-next-line no-console
                     .then(message => console.log(message.sid));
             }
             res.status(201).json(newConv);
