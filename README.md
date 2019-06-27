@@ -335,15 +335,13 @@ Example:
     id: 1,
     question_id: 1,
     mentor_id: 3,
-    created_at: '2019-06-25 11:49:12',
-    updated_at: '2019-06-25 11:49:12'
+    author_id: 1
   },
   {
     id: 2,
     question_id: 1,
     mentor_id: 4,
-    created_at: '2019-06-25 11:49:12',
-    updated_at: '2019-06-25 11:49:12'
+    author_id: 2
   }
 ];
 ```
@@ -363,8 +361,7 @@ Example:
     "id": 6,
     "question_id": 6,
     "mentor_id": 1,
-    "created_at": "2019-06-25 15:24:37",
-    "updated_at": "2019-06-25 15:24:37",
+    "author_id": 2,
     "messages": [
         {
             "id": 16,
@@ -410,6 +407,7 @@ Example:
     "id": 8,
     "question_id": 6,
     "mentor_id": 2,
+    "author_id": 3,
     "created_at": "2019-06-25 16:02:24",
     "updated_at": "2019-06-25 16:02:24"
 }
