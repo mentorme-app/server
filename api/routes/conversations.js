@@ -86,6 +86,7 @@ router.post('/', validate(Conv.postSchema), async (req, res) => {
                         from: process.env.TWILIO_PHONE_NUMBER,
                         to: user.phone_number
                     })
+                    // eslint-disable-next-line no-console
                     .then(message => console.log(message.sid));
             }
             res.status(201).json(newConv);
