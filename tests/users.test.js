@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const server = require('../api/index');
 const db = require('../data/db');
 const path = require('../lib/routes');
-const { user, tag, putUser } = require('./testsSetup');
+const { user, tag, putUser, id } = require('./testsSetup');
 
 describe('Users endpoints', function() {
     beforeEach(async function() {
@@ -19,12 +19,12 @@ describe('Users endpoints', function() {
 
     describe('GET /:id', function() {
         it('Returns status code 200 on succesfull user fetch', async function() {
-            const res = await request(server).get(`${path.user}/1`);
+            const res = await request(server).get(`${path.user}/${id}`);
             assert.strictEqual(res.status, 200, 'Status codes 200 are equal');
         });
 
         it('Returns the user object if it exist', async function() {
-            const res = await request(server).get(`${path.user}/1`);
+            const res = await request(server).get(`${path.user}/${id}`);
             assert.property(res.body, 'id', 'Contains user id');
             assert.strictEqual(res.body.id, 1, 'Responds with correct ID');
             assert.property(res.body, 'username', 'Contains username');
@@ -55,19 +55,19 @@ describe('Users endpoints', function() {
     describe('PUT /:id', function() {
         it('Returns 404 on bad user id', async function() {
             const res = await request(server)
-                .put('/api/user/5')
+                .put(`${path.user}/5`)
                 .send(putUser);
             assert.strictEqual(res.status, 404, 'Status codes 404 are equal');
         });
         it('Sends an error message if user with ID does not exist', async function() {
             const res = await request(server)
-                .put('/api/user/5')
+                .put(`${path.user}/5`)
                 .send(putUser);
             assert.property(res.body, 'message', 'Contains error message');
         });
         it('Hashes password saved into the database', async function() {
             const res = await request(server)
-                .put('/api/user/1')
+                .put(`${path.user}/${id}`)
                 .send(putUser);
             // Grab the user from the DB and check if his password is hashed
             const [updatedUser] = await db('users');
@@ -88,7 +88,7 @@ describe('Users endpoints', function() {
         });
         it('Updates user', async function() {
             const res = await request(server)
-                .put('/api/user/1')
+                .put(`${path.user}/${id}`)
                 .send(putUser);
             assert.property(res.body, 'id', 'Contains user id');
             assert.strictEqual(res.body.id, 1, 'Responds with correct ID');
@@ -107,7 +107,7 @@ describe('Users endpoints', function() {
         });
         it('Returns 200 on success', async function() {
             const res = await request(server)
-                .put('/api/user/1')
+                .put(`${path.user}/${id}`)
                 .send(putUser);
             assert.strictEqual(res.status, 200, 'Status codes 404 are equal');
         });

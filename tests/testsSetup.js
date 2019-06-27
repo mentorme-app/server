@@ -15,5 +15,6 @@ module.exports = {
     putUser: {
         username: 'Joey',
         password: 'not_so_secret'
-    }
+    },
+    id: 1
 };
