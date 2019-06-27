@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=testing mocha 'tests/**/*.js'",
     "test_dev": "cross-env NODE_ENV=testing mocha 'tests/**/*.js' --watch --timeout 5000",
-    "coverage": "cross-env NODE_ENV=testing nyc --reporter=text mocha",
+    "coverage": "cross-env NODE_ENV=testing nyc --reporter=text mocha 'tests/**/*.js'",
     "server": "nodemon index.js",
     "start": "node index.js",
     "migrate": "knex migrate:latest",
