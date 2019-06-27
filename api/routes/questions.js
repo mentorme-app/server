@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
                 id: q.author_id,
                 username: q.username,
                 email: q.email,
+                phone_number: q.phone_number,
                 avatar: q.avatar,
                 motto: q.motto,
                 description: q.description
@@ -25,6 +26,7 @@ router.get('/', async (req, res) => {
             delete q.author_id;
             delete q.password;
             delete q.username;
+            delete q.phone_number;
             delete q.email;
             delete q.avatar;
             delete q.motto;
