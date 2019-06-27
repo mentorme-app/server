@@ -3,9 +3,23 @@ const db = require('../data/db');
 
 module.exports = {
     getAll: () =>
-        db('questions')
-            .join('tags', 'questions.tag_id', 'tags.id')
-            .join('users', 'questions.author_id', 'users.id'),
+        db('questions as q')
+            .join('tags as t', 'q.tag_id', 't.id')
+            .join('users as u', 'q.author_id', 'u.id')
+            .select(
+                'q.id',
+                'q.title',
+                'q.question',
+                'q.author_id',
+                'q.tag_id',
+                't.tag',
+                'u.username',
+                'u.email',
+                'u.phone_number',
+                'u.avatar',
+                'u.motto',
+                'u.description'
+            ),
     filter: query => db('questions').where(query),
     getById: id => db('questions').where({ id }),
     addResource: resource =>
