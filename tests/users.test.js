@@ -81,7 +81,7 @@ describe('Users endpoints', function() {
             );
             assert.isTrue(
                 bcrypt.compareSync(putUser.password, updatedUser.password),
-                'Checks is the password is hashed'
+                'Checks hashes of input password with hash of pw in db'
             );
         });
         it('Updates user', async function() {
