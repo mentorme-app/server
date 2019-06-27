@@ -199,23 +199,21 @@ Example:
 [
   {
     id: 1,
-    title: 'Dolores ut aut reiciendis quasi.',
-    question: 'Quas debitis lau ',
-    isAnswered: 0,
-    created_at: '2019-06-25 11:49:12',
-    updated_at: '2019-06-25 11:49:12',
+    title: 'Autem reprehenderit perferendis et cumque libero.',
+    question: 'Iusto optio nihil a facere quaerat ut libero.',
     tag: {
       tag: '',
       id: 1
     },
     author: {
       id: 1,
-      username: 'Danika_Rolfson35',
-      email: 'Claudia36@gmail.com',
-      phone_number: '(951) 324-8429 x1770',
-      avatar: null,
-      motto: 'Tempore est corrupti nemo beatae omnis aut consequatur.',
-      description: 'Deserunt ut mpore minus voluptatibus ipsam. Excepturi .'
+      username: 'Delphia26',
+      email: 'Branson_Buckridge10@yahoo.com',
+      phone_number: '(324) 778-4260',
+      avatar:
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+      motto: 'Veniam in non optio maiores doloribus.',
+      description: 'Nihil ut libero voluptatem est quis. '
     }
   }
 ];
@@ -335,15 +333,13 @@ Example:
     id: 1,
     question_id: 1,
     mentor_id: 3,
-    created_at: '2019-06-25 11:49:12',
-    updated_at: '2019-06-25 11:49:12'
+    author_id: 1
   },
   {
     id: 2,
     question_id: 1,
     mentor_id: 4,
-    created_at: '2019-06-25 11:49:12',
-    updated_at: '2019-06-25 11:49:12'
+    author_id: 2
   }
 ];
 ```
@@ -406,6 +402,33 @@ Example:
 }
 ```
 
+## [GET] All conversations for a user
+
+**URL:** `/api/conversations/user/:id`
+
+**Params:** Valid user ID.
+
+**Returns:** an array with conversation objects.
+
+Example:
+
+```js
+[
+  {
+    id: 1,
+    question_id: 1,
+    mentor_id: 3,
+    author_id: 1
+  },
+  {
+    id: 7,
+    question_id: 6,
+    mentor_id: 1,
+    author_id: 2
+  }
+];
+```
+
 ## [POST] New conversation
 
 **URL:** `/api/conversation`
@@ -430,6 +453,7 @@ Example:
     "id": 8,
     "question_id": 6,
     "mentor_id": 2,
+    "author_id": 3,
     "created_at": "2019-06-25 16:02:24",
     "updated_at": "2019-06-25 16:02:24"
 }
