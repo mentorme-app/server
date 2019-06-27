@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const client = require('../../lib/twilio');
 const validate = require('../../middleware/validate');
 const Questions = require('../../models/questions');
 const Users = require('../../models/users');
@@ -47,11 +48,24 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ error: err });
     }
 });
-const client = require('../../lib/twilio');
+
 router.post('/', validate(Conv.postSchema), async (req, res) => {
     const { mentor_id, question_id } = req.body;
 
     try {
+        const conversations4question = await Conv.getAllForQ(question_id);
+
+        const [convAlrdyExists] = conversations4question.filter(
+            c => c.mentor_id === mentor_id
+        );
+
+        if (convAlrdyExists) {
+            return res.status(422).json({
+                message: 'You already have a conversation in this question',
+                conversation: convAlrdyExists
+            });
+        }
+
         const [newConvId] = await Conv.addResource({
             mentor_id,
             question_id
