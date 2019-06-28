@@ -2,4 +2,5 @@ language: node_js
 node_js:
   - 'node'
 
-services: sqlite3
+services:
+  - 'sqlite3'
