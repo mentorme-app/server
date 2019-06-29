@@ -1,9 +1,9 @@
+require('dotenv').config();
+
 module.exports = {
     development: {
-        client: 'sqlite3',
-        connection: {
-            filename: './data/mentorme.sqlite3'
-        },
+        client: 'pg',
+        connection: process.env.LOCAL_DB_DEV,
         useNullAsDefault: true,
         migrations: {
             directory: './data/migrations'
@@ -13,10 +13,8 @@ module.exports = {
         }
     },
     testing: {
-        client: 'sqlite3',
-        connection: {
-            filename: './data/test.sqlite3'
-        },
+        client: 'pg',
+        connection: process.env.LOCAL_DB_TEST,
         useNullAsDefault: true,
         migrations: {
             directory: './data/migrations'

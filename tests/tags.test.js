@@ -11,7 +11,15 @@ describe('Tags endpoints', function() {
     });
 
     after(async function() {
-        await db('tags').truncate();
+        await db.raw('TRUNCATE TABLE tags CASCADE');
+    });
+
+    it('Is in correct env', function() {
+        assert.strictEqual(
+            process.env.NODE_ENV,
+            'testing',
+            'Is in testing env'
+        );
     });
 
     describe('GET all tags', function() {
