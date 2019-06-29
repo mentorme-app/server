@@ -1,15 +1,17 @@
 module.exports = {
     user: {
+        id: 1,
         username: 'Joe',
         email: 'joe@gmail.com',
         password: 'secret',
         phone_number: '123-456-7890',
         avatar: null,
-        motto: 'Dignissimos voluptates tempore dolorem.',
-        description: 'Officiis ad nobis veniam voluptas harum rem.',
+        motto: 'Hi! I am Joe tester',
+        description: 'You can meet me in Testing enviroments testing software',
         tag_id: 1
     },
     tag: {
+        id: 1,
         tag: 'Testing'
     },
     putUser: {
@@ -18,6 +20,7 @@ module.exports = {
     },
     id: 1,
     question: {
+        id: 1,
         title: 'How do you test API endpoints?',
         question:
             'What do you test in them? How do you test latency? How do you do penetration tests?',
