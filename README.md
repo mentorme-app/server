@@ -1,5 +1,7 @@
 # MentorMe - back end
 
+[![Travis](https://img.shields.io/travis/com/mentorme-app/server.svg)](https://travis-ci.com/mentorme-app/server/builds/117393989)
+
 MentorMe lets you lend your business skills to an entrepreneurs across the globe. New entrepreneurs often have a lot of questions, and don’t always have a mentor to ask. As an entrepreneur, whenever you need business advice, our volunteers are happy to help. By posting your questions, you can communicate directly and solve a problem. As an experience business owner you can help pay it forward just by installing the MentorMe app.
 
 ## MVP features
