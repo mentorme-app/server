@@ -13,9 +13,9 @@ describe('Questions endpoints', function() {
     });
 
     after(async function() {
-        await db('users').truncate();
-        await db('tags').truncate();
-        await db('questions').truncate();
+        await db.raw('TRUNCATE TABLE tags CASCADE');
+        await db.raw('TRUNCATE TABLE users CASCADE');
+        await db.raw('TRUNCATE TABLE questions CASCADE');
     });
 
     describe('GET all questions', function() {
