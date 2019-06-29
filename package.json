@@ -4,7 +4,7 @@
   "description": "Back end repo for MentorMe app",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=testing mocha 'tests/**/*.js'",
+    "test": "cross-env NODE_ENV=testing knex migrate:latest && cross-env NODE_ENV=testing mocha 'tests/**/*.js'",
     "test_dev": "cross-env NODE_ENV=testing mocha 'tests/**/*.js' --watch --timeout 5000",
     "coverage": "cross-env NODE_ENV=testing nyc --reporter=text mocha 'tests/**/*.js'",
     "server": "nodemon index.js",
