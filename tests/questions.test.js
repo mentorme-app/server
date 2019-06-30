@@ -103,7 +103,7 @@ describe('Questions endpoints', function() {
                 .send(badQ);
             assert.strictEqual(res.status, 404, 'Status coded 404 match');
         });
-        it('Sends 422 on failed data validation', async function() {
+        it.skip('Sends 422 on failed data validation', async function() {
             const badQ = { ...postQ, id: 5 };
             const res = await request(server)
                 .post(`${path.questions}`)
@@ -120,6 +120,7 @@ describe('Questions endpoints', function() {
             const res = await request(server)
                 .post(`${path.questions}`)
                 .send(postQ);
+            assert.strictEqual(res.status, 201, 'Status codes 201 are equal');
             assert.property(res.body, 'id', 'Does have an ID');
             assert.property(res.body, 'author', 'Does have author prop');
             assert.property(res.body, 'tag', 'Does have tag prop');
