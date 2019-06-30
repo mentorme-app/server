@@ -103,11 +103,23 @@ describe('Questions endpoints', function() {
                 .send(badQ);
             assert.strictEqual(res.status, 404, 'Status coded 404 match');
         });
-        it('Returns newly created question object and 201 status', async function() {
+        it('Sends 422 on failed data validation', async function() {
+            const badQ = { ...postQ, id: 5 };
+            const res = await request(server)
+                .post(`${path.questions}`)
+                .send(badQ);
+            assert.strictEqual(res.status, 422, 'Status coded 422 match');
+        });
+        it('Returns status code 201 on success', async function() {
             const res = await request(server)
                 .post(`${path.questions}`)
                 .send(postQ);
             assert.strictEqual(res.status, 201, 'Status codes 201 are equal');
+        });
+        it('Returns newly created question object', async function() {
+            const res = await request(server)
+                .post(`${path.questions}`)
+                .send(postQ);
             assert.property(res.body, 'id', 'Does have an ID');
             assert.property(res.body, 'author', 'Does have author prop');
             assert.property(res.body, 'tag', 'Does have tag prop');
