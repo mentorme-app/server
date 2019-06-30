@@ -26,5 +26,12 @@ module.exports = {
             'What do you test in them? How do you test latency? How do you do penetration tests?',
         author_id: 1,
         tag_id: 1
+    },
+    postQ: {
+        // id: 2, // No ID, as it is not allowed by data validation
+        title: 'How do you POST new question?',
+        question: 'What do you test in them?',
+        author_id: 1,
+        tag_id: 1
     }
 };
