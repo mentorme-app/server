@@ -89,6 +89,26 @@ describe('Questions endpoints', function() {
     });
 
     describe('POST question', function() {
+        it('Returns status code 201 on success', async function() {
+            const res = await request(server)
+                .post(`${path.questions}`)
+                .send(postQ);
+            assert.strictEqual(res.status, 201, 'Status codes 201 are equal');
+        });
+        it('Returns newly created question object', async function() {
+            const res = await request(server)
+                .post(`${path.questions}`)
+                .send(postQ);
+            assert.property(res.body, 'id', 'Does have an ID');
+            assert.property(res.body, 'author', 'Does have author prop');
+            assert.property(res.body, 'tag', 'Does have tag prop');
+            assert.notProperty(
+                res.body,
+                'author_id',
+                'Does not have author_id prop'
+            );
+            assert.notProperty(res.body, 'tag_id', 'Does not have tag_id prop');
+        });
         it('Sends 404 if author_id does not exist', async function() {
             const badQ = { ...postQ, author_id: 5 };
             const res = await request(server)
@@ -109,26 +129,6 @@ describe('Questions endpoints', function() {
                 .post(`${path.questions}`)
                 .send(badQ);
             assert.strictEqual(res.status, 422, 'Status coded 422 match');
-        });
-        it('Returns status code 201 on success', async function() {
-            const res = await request(server)
-                .post(`${path.questions}`)
-                .send(postQ);
-            assert.strictEqual(res.status, 201, 'Status codes 201 are equal');
-        });
-        it('Returns newly created question object', async function() {
-            const res = await request(server)
-                .post(`${path.questions}`)
-                .send(postQ);
-            assert.property(res.body, 'id', 'Does have an ID');
-            assert.property(res.body, 'author', 'Does have author prop');
-            assert.property(res.body, 'tag', 'Does have tag prop');
-            assert.notProperty(
-                res.body,
-                'author_id',
-                'Does not have author_id prop'
-            );
-            assert.notProperty(res.body, 'tag_id', 'Does not have tag_id prop');
         });
     });
     describe('DELETE question by ID', function() {
