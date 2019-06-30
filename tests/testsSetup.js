@@ -28,7 +28,7 @@ module.exports = {
         tag_id: 1
     },
     postQ: {
-        // id: 2, // No ID, as it is not allowed by data validation
+        id: 2,
         title: 'How do you POST new question?',
         question: 'What do you test in them?',
         author_id: 1,
