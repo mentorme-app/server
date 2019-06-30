@@ -88,11 +88,12 @@ describe('Questions endpoints', function() {
         });
     });
 
-    describe('POST question', function() {
+    describe.only('POST question', function() {
         it('Returns status code 201 on success', async function() {
             const res = await request(server)
                 .post(`${path.questions}`)
                 .send(postQ);
+            console.log(res);
             assert.strictEqual(res.status, 201, 'Status codes 201 are equal');
         });
         it('Returns newly created question object', async function() {
