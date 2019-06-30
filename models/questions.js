@@ -31,30 +31,15 @@ module.exports = {
             .where({ id })
             .del(),
     postSchema: question => {
-        const schema =
-            process.env.NODE_ENV === 'testing'
-                ? Joi.object().keys({
-                    id: Joi.number()
-                        .integer()
-                        .positive()
-                        .required(),
-                    title: Joi.string()
-                        .required()
-                        .max(255),
-                    question: Joi.string().required(),
-                    author_id: Joi.number().required(),
-                    tag_id: Joi.number().required(),
-                    isAnswered: Joi.boolean()
-                })
-                : Joi.object().keys({
-                    title: Joi.string()
-                        .required()
-                        .max(255),
-                    question: Joi.string().required(),
-                    author_id: Joi.number().required(),
-                    tag_id: Joi.number().required(),
-                    isAnswered: Joi.boolean()
-                });
+        const schema = Joi.object().keys({
+            title: Joi.string()
+                .required()
+                .max(255),
+            question: Joi.string().required(),
+            author_id: Joi.number().required(),
+            tag_id: Joi.number().required(),
+            isAnswered: Joi.boolean()
+        });
         return Joi.validate(question, schema);
     }
 };

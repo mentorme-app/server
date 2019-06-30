@@ -20,7 +20,6 @@ module.exports = {
     },
     id: 1,
     question: {
-        id: 1,
         title: 'How do you test API endpoints?',
         question:
             'What do you test in them? How do you test latency? How do you do penetration tests?',
@@ -28,7 +27,6 @@ module.exports = {
         tag_id: 1
     },
     postQ: {
-        id: 2,
         title: 'How do you POST new question?',
         question: 'What do you test in them?',
         author_id: 1,
