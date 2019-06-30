@@ -90,10 +90,12 @@ describe('Questions endpoints', function() {
 
     describe.only('POST question', function() {
         it('Returns status code 201 on success', async function() {
+            const q = await db('questions');
+            q.forEach(a => console.log(a));
             const res = await request(server)
                 .post(`${path.questions}`)
                 .send(postQ);
-            console.log(res);
+            console.log(res.body);
             assert.strictEqual(res.status, 201, 'Status codes 201 are equal');
         });
         it('Returns newly created question object', async function() {
