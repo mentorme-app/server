@@ -5,7 +5,7 @@ const db = require('../data/db');
 const path = require('../lib/routes');
 const seed = require('./testsSetup');
 
-describe.only('Conversations endpoints', function() {
+describe('Conversations endpoints', function() {
     before(async function() {
         await db('tags').insert(seed.tag);
         // author
