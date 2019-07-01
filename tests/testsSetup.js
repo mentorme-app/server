@@ -52,5 +52,16 @@ module.exports = {
         id: id,
         question_id: id,
         mentor_id: id + 1
+    },
+    mentor2: {
+        id: id + 2,
+        username: 'mentor2',
+        email: 'mentor2@gmail.com',
+        password: 'secret',
+        tag_id: id
+    },
+    postC: {
+        question_id: id,
+        mentor_id: id + 2
     }
 };
