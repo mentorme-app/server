@@ -40,7 +40,6 @@ module.exports = {
             tag_id: Joi.number().required(),
             isAnswered: Joi.boolean()
         });
-
         return Joi.validate(question, schema);
     }
 };
