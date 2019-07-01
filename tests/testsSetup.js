@@ -63,5 +63,10 @@ module.exports = {
     postC: {
         question_id: id,
         mentor_id: id + 2
+    },
+    message: {
+        sender: id,
+        text: 'What a nice message',
+        conversation_id: id
     }
 };
