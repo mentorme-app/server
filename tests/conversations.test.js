@@ -21,6 +21,13 @@ describe('Conversations endpoints', function() {
         await db.raw('TRUNCATE TABLE questions CASCADE');
         await db.raw('TRUNCATE TABLE conversations CASCADE');
     });
+    it('Is in correct env', function() {
+        assert.strictEqual(
+            process.env.NODE_ENV,
+            'testing',
+            'Is in testing env'
+        );
+    });
     describe('GET conversations for a question', function() {
         it('Returns status 422 on missing qid query string', async function() {
             const res = await request(server).get(`${path.conversations}`);
@@ -70,11 +77,15 @@ describe('Conversations endpoints', function() {
     });
     describe('GET conversation by ID', function() {
         it('Returns 404 on bad ID', async function() {
-            const res = await request(server).get(`${path.conversations}/5`);
+            const res = await request(server).get(
+                `${path.conversations}/${seed.badId}`
+            );
             assert.strictEqual(res.status, 404, 'Status code 404 match');
         });
         it('Returns error msg on bad ID', async function() {
-            const res = await request(server).get(`${path.conversations}/5`);
+            const res = await request(server).get(
+                `${path.conversations}/${seed.badId}`
+            );
             assert.property(res.body, 'message', 'Contains error msg');
         });
         it('Returns 200 on success', async function() {

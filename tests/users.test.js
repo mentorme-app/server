@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const server = require('../api/index');
 const db = require('../data/db');
 const path = require('../lib/routes');
-const { user, tag, putUser, id } = require('./testsSetup');
+const { user, tag, putUser, id, badId } = require('./testsSetup');
 
 describe('Users endpoints', function() {
     before(async function() {
@@ -50,12 +50,12 @@ describe('Users endpoints', function() {
         });
 
         it('Sends 404 status code if a user with ID does not exist', async function() {
-            const res = await request(server).get(`${path.user}/5`);
+            const res = await request(server).get(`${path.user}/${badId}`);
             assert.strictEqual(res.status, 404, 'Status codes 404 are equal');
         });
 
         it('Sends an error message if user with ID does not exist', async function() {
-            const res = await request(server).get(`${path.user}/5`);
+            const res = await request(server).get(`${path.user}/${badId}`);
             assert.property(res.body, 'message', 'Contains error message');
         });
     });
@@ -63,13 +63,13 @@ describe('Users endpoints', function() {
     describe('PUT /:id', function() {
         it('Returns 404 on bad user id', async function() {
             const res = await request(server)
-                .put(`${path.user}/5`)
+                .put(`${path.user}/${badId}`)
                 .send(putUser);
             assert.strictEqual(res.status, 404, 'Status codes 404 are equal');
         });
         it('Sends an error message if user with ID does not exist', async function() {
             const res = await request(server)
-                .put(`${path.user}/5`)
+                .put(`${path.user}/${badId}`)
                 .send(putUser);
             assert.property(res.body, 'message', 'Contains error message');
         });

@@ -3,7 +3,7 @@ const request = require('supertest');
 const server = require('../api/index');
 const db = require('../data/db');
 const path = require('../lib/routes');
-const { user, tag, id, question, postQ } = require('./testsSetup');
+const { user, tag, id, question, postQ, badId } = require('./testsSetup');
 
 describe('Questions endpoints', function() {
     before(async function() {
@@ -11,11 +11,17 @@ describe('Questions endpoints', function() {
         await db('users').insert(user);
         await db('questions').insert(question);
     });
-
     after(async function() {
         await db.raw('TRUNCATE TABLE tags CASCADE');
         await db.raw('TRUNCATE TABLE users CASCADE');
         await db.raw('TRUNCATE TABLE questions CASCADE');
+    });
+    it('Is in correct env', function() {
+        assert.strictEqual(
+            process.env.NODE_ENV,
+            'testing',
+            'Is in testing env'
+        );
     });
 
     describe('GET all questions', function() {
@@ -78,37 +84,27 @@ describe('Questions endpoints', function() {
             );
         });
         it('Sends 404 status code if a user with ID does not exist', async function() {
-            const res = await request(server).get(`${path.questions}/5`);
+            const res = await request(server).get(`${path.questions}/${badId}`);
             assert.strictEqual(res.status, 404, 'Status codes 404 are equal');
         });
 
         it('Sends an error message if user with ID does not exist', async function() {
-            const res = await request(server).get(`${path.questions}/5`);
+            const res = await request(server).get(`${path.questions}/${badId}`);
             assert.property(res.body, 'message', 'Contains error message');
         });
     });
 
-    describe.only('POST question', function() {
+    describe('POST question', function() {
         it('Returns status code 201 on success', async function() {
-            const q = await db('questions');
-            q.forEach(a => console.log('before 201', a));
             const res = await request(server)
                 .post(`${path.questions}`)
                 .send(postQ);
-            console.log(res.body);
-            const w = await db('questions');
-            w.forEach(a => console.log('after 201', a));
             assert.strictEqual(res.status, 201, 'Status codes 201 are equal');
         });
         it('Returns newly created question object', async function() {
-            const q = await db('questions');
-            q.forEach(a => console.log('before ret', a));
             const res = await request(server)
                 .post(`${path.questions}`)
                 .send(postQ);
-            console.log(res.body);
-            const w = await db('questions');
-            w.forEach(a => console.log('after ret', a));
             assert.property(res.body, 'id', 'Does have an ID');
             assert.property(res.body, 'author', 'Does have author prop');
             assert.property(res.body, 'tag', 'Does have tag prop');
@@ -120,21 +116,21 @@ describe('Questions endpoints', function() {
             assert.notProperty(res.body, 'tag_id', 'Does not have tag_id prop');
         });
         it('Sends 404 if author_id does not exist', async function() {
-            const badQ = { ...postQ, author_id: 5 };
+            const badQ = { ...postQ, author_id: badId };
             const res = await request(server)
                 .post(`${path.questions}`)
                 .send(badQ);
             assert.strictEqual(res.status, 404, 'Status coded 404 match');
         });
         it('Sends 404 if tag_id does not exist', async function() {
-            const badQ = { ...postQ, tag_id: 5 };
+            const badQ = { ...postQ, tag_id: badId };
             const res = await request(server)
                 .post(`${path.questions}`)
                 .send(badQ);
             assert.strictEqual(res.status, 404, 'Status coded 404 match');
         });
-        it.skip('Sends 422 on failed data validation', async function() {
-            const badQ = { ...postQ, id: 5 };
+        it('Sends 422 on failed data validation', async function() {
+            const badQ = { ...postQ, id: badId };
             const res = await request(server)
                 .post(`${path.questions}`)
                 .send(badQ);
@@ -143,11 +139,15 @@ describe('Questions endpoints', function() {
     });
     describe('DELETE question by ID', function() {
         it('Sends 404 status code if a question with ID does not exist', async function() {
-            const res = await request(server).delete(`${path.questions}/5`);
+            const res = await request(server).delete(
+                `${path.questions}/${badId}`
+            );
             assert.strictEqual(res.status, 404, 'Status codes 404 are equal');
         });
         it('Sends an error message if question with ID does not exist', async function() {
-            const res = await request(server).delete(`${path.questions}/5`);
+            const res = await request(server).delete(
+                `${path.questions}/${badId}`
+            );
             assert.property(res.body, 'message', 'Contains error message');
         });
         it('Deletes the correct resource', async function() {
